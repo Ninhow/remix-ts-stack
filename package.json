@@ -7,15 +7,22 @@
     "dev": "remix dev -c \"npm run dev:server\"",
     "dev:server": "nodemon --exec \"ts-node ./server.ts\" --watch ./server.ts",
     "start": "cross-env NODE_ENV=production ts-node ./server.ts",
+    "test": "npm run build && npx playwright test",
+    "test:debug": "npx playwright test --debug",
+    "test:quiet": "npx playwright test --quiet",
+    "test:chromium": "npx playwright test --project=chromium",
+    "test:coverage": "nyc --reporter=html --exclude-after-remap=false npx playwright test --project=chromium --quiet",
     "typecheck": "tsc"
   },
   "dependencies": {
+    "@actions/exec": "^1.1.1",
     "@remix-run/css-bundle": "^1.18.1",
     "@remix-run/express": "^1.18.1",
     "@remix-run/node": "^1.18.1",
     "@remix-run/react": "^1.18.1",
     "compression": "^1.7.4",
     "cross-env": "^7.0.3",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "isbot": "^3.6.8",
     "morgan": "^1.10.0",
@@ -24,6 +31,7 @@
     "ts-node": "^10.9.1"
   },
   "devDependencies": {
+    "@playwright/test": "^1.36.1",
     "@remix-run/dev": "^1.18.1",
     "@remix-run/eslint-config": "^1.18.1",
     "@types/compression": "^1.7.2",
