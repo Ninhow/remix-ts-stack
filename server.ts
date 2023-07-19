@@ -4,8 +4,10 @@ import { createRequestHandler } from "@remix-run/express";
 import { broadcastDevReady, installGlobals } from "@remix-run/node";
 import chokidar from "chokidar";
 import compression from "compression";
+import type { Request, Response, NextFunction } from "express";
 import express from "express";
 import morgan from "morgan";
+
 
 installGlobals();
 
@@ -64,7 +66,7 @@ function createDevRequestHandler() {
     broadcastDevReady(await build);
   });
 
-  return async (req, res, next) => {
+  return async (req:  Request, res: Response, next: NextFunction) => {
     try {
       //
       return createRequestHandler({
